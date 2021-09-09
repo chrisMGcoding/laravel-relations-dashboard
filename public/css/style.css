@@ -1,0 +1,30 @@
+.vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.font {
+    text-decoration: none;
+    color: white;
+}
+
+.carre {
+    padding: 0.5rem;
+}
+
+.black {
+    background-color: black;
+}
+
+.p {
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.bg-vertical {
+    background-color: black;
+    height: 50rem;
+}
