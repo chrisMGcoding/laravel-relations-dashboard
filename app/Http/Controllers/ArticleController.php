@@ -14,7 +14,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $article = Article::all();
+        return view('pages.articles', compact('article'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('ArticlesCrud.create');
     }
 
     /**
@@ -35,7 +36,23 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'nom' => ['required'],
+            'description' => ['required'],
+            'date_publication' => ['required'],
+            'user_id' => ['required']
+        ]);
+
+        $table = new Article;
+
+        $table -> nom = $request -> nom;
+        $table -> description = $request -> description;
+        $table -> date_publication = $request -> date_publication;
+        $table -> user_id = $request -> user_id;
+
+        $table -> save();
+
+        return redirect() -> route('articles.index') -> with('message', 'Article créé');
     }
 
     /**
@@ -46,7 +63,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view('ArticlesCrud.show', compact('article'));
     }
 
     /**
@@ -57,7 +74,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('ArticlesCrud.edit', compact('article'));
     }
 
     /**
@@ -69,7 +86,21 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $request -> validate([
+            'nom' => ['required'],
+            'description' => ['required'],
+            'date_publication' => ['required'],
+            'user_id' => ['required']
+        ]);
+
+        $article -> nom = $request -> nom;
+        $article -> description = $request -> description;
+        $article -> date_publication = $request -> date_publication;
+        $article -> user_id = $request -> user_id;
+
+        $article -> save();
+
+        return redirect() -> route('articles.index') -> with('message', 'Article modifié');
     }
 
     /**
@@ -80,6 +111,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article -> delete();
+
+        return redirect() -> route('articles.index') -> with('message', 'Article supprimé');
     }
 }

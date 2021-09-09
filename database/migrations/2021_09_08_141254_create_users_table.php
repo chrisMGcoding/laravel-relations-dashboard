@@ -19,11 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('nom', 40);
             $table->string('prenom', 25);
             $table->integer('age');
-            $table->date('date de naissance');
+            $table->date('date_naissance');
             $table->string('email')->unique();
-            $table->string('mot de passe');
-            $table->string('photo de profile');
-            $table->foreignId('role_id')->constrained();
+            $table->string('mot_passe');
+            $table->string('photo_profile');
+            $table->foreignId('role_id')->constrained()->onDelete('cascade');
         });
     }
 

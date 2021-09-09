@@ -18,8 +18,8 @@ class CreateArticlesTable extends Migration
             $table->timestamps();
             $table->string('nom', 50);
             $table->text('description', 250);
-            $table->date('date de publication');
-            $table->foreignId('user_id')->constrained();
+            $table->date('date_publication');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 

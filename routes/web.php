@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/roles', RoleController::class);
+
+Route::resource('/users', UserController::class);
+
+Route::resource('/articles', ArticleController::class);
+
+Route::resource('/commentaires', CommentaireController::class);

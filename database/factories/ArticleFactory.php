@@ -25,7 +25,7 @@ class ArticleFactory extends Factory
         return [
             'nom' => $this -> faker -> name('male'|'female'),
             'description' => $this -> faker -> realText($maxNbChars = 300, $indexSize = 4),
-            'date de publication' => $this -> faker -> date($format = 'Y-m-d', $max = 'now'),
+            'date_publication' => $this -> faker -> date($format = 'Y-m-d', $max = 'now'),
             'user_id' => $this -> faker -> numberBetween($min = 1, count(User::all()))
         ];
     }

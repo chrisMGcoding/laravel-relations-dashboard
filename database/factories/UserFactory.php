@@ -26,10 +26,10 @@ class UserFactory extends Factory
             'nom' => $this -> faker -> name('male'|'female'),
             'prenom' => $this -> faker -> firstName('male'|'female'),
             'age' => $this -> faker -> numberBetween($min = 10, $max = 99),
-            'date de naissance' => $this -> faker -> date($format = 'Y-m-d', $max = 'now'),
+            'date_naissance' => $this -> faker -> date($format = 'Y-m-d', $max = 'now'),
             'email' => $this -> faker -> email,
-            'mot de passe' => $this -> faker -> password,
-            'photo de profile' => $this -> faker -> imageUrl($width = 640, $height = 480),
+            'mot_passe' => $this -> faker -> password,
+            'photo_profile' => $this -> faker -> imageUrl($width = 640, $height = 480),
             'role_id' => $this -> faker -> numberBetween($min = 1, count(Role::all()))
         ];
     }

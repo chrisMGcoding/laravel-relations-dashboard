@@ -14,7 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $role = Role::all();
+        return view('pages.roles', compact('role'));
     }
 
     /**
@@ -24,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('RolesCrud.create');
     }
 
     /**
@@ -35,7 +36,17 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "nom" => ["required"]
+        ]);
+
+        $table = new Role;
+
+        $table -> nom = $request -> nom;
+
+        $table -> save();
+
+        return redirect() -> route('roles.index') -> with('message', 'Rôle ajouté');
     }
 
     /**
@@ -46,7 +57,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return view('RolesCrud.show', compact('role'));
     }
 
     /**
@@ -57,7 +68,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('RolesCrud.edit', compact('role'));
     }
 
     /**
@@ -69,7 +80,15 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            "nom" => ["required"]
+        ]);
+
+        $role -> nom = $request -> nom;
+
+        $role -> save();
+
+        return redirect() -> route('roles.index') -> with('message', 'Rôle modifié');
     }
 
     /**
@@ -80,6 +99,8 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role -> delete();
+
+        return redirect() -> route('roles.index') -> with('message', 'Rôle supprimé');
     }
 }

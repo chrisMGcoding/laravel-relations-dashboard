@@ -14,7 +14,8 @@ class CommentaireController extends Controller
      */
     public function index()
     {
-        //
+        $commentaire = Commentaire::all();
+        return view('pages.commentaires', compact('commentaire'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CommentaireController extends Controller
      */
     public function create()
     {
-        //
+        return view('CommentairesCrud.create');
     }
 
     /**
@@ -35,7 +36,19 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request -> validate([
+            'contenu' => ['required'],
+            'article_id' => ['required']
+        ]);
+
+        $table = new Commentaire;
+
+        $table -> contenu = $request -> contenu;
+        $table -> article_id = $request -> article_id;
+
+        $table -> save();
+
+        return redirect() -> route('commentaires.index') -> with('message', 'Commentaire créé');
     }
 
     /**
@@ -46,7 +59,7 @@ class CommentaireController extends Controller
      */
     public function show(Commentaire $commentaire)
     {
-        //
+        return view('CommentairesCrud.show', compact('commentaire'));
     }
 
     /**
@@ -57,7 +70,7 @@ class CommentaireController extends Controller
      */
     public function edit(Commentaire $commentaire)
     {
-        //
+        return view('CommentairesCrud.edit', compact('commentaire'));
     }
 
     /**
@@ -69,7 +82,17 @@ class CommentaireController extends Controller
      */
     public function update(Request $request, Commentaire $commentaire)
     {
-        //
+        $request -> validate([
+            'contenu' => ['required'],
+            'article_id' => ['required']
+        ]);
+
+        $commentaire -> contenu = $request -> contenu;
+        $commentaire -> article_id = $request -> article_id;
+
+        $commentaire -> save();
+
+        return redirect() -> route('commentaires.index') -> with('message', 'Commentaire créé');
     }
 
     /**
@@ -80,6 +103,8 @@ class CommentaireController extends Controller
      */
     public function destroy(Commentaire $commentaire)
     {
-        //
+        $commentaire -> delete();
+
+        return redirect() -> route('commentaires.index') -> with('message', 'Commentaire supprimé');
     }
 }
