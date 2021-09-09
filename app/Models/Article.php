@@ -17,4 +17,8 @@ class Article extends Model
         'date de publication',
         'user_id'
     ];
+
+    public function article() {
+        return $this->belongsTo(User::class);
+    }
 }

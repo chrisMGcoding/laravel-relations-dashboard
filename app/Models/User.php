@@ -21,6 +21,10 @@ class User extends Model
         'photo de profile',
         'role_id'
     ];
+
+    public function users() {
+        return $this->belongsTo(Role::class);
+    }
 }
 
 

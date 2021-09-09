@@ -15,4 +15,8 @@ class Commentaire extends Model
         'contenu',
         'article_id'
     ];
+
+    public function article() {
+        return $this->belongsTo(Article::class);
+    }
 }
